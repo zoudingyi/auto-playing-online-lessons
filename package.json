@@ -2,13 +2,13 @@
   "name": "autoplay-video",
   "version": "1.0.0",
   "description": "play online course videos automatically.",
-  "main": "index.js",
+  "main": "main.js",
   "dependencies": {
     "selenium-webdriver": "^4.0.0-rc-1"
   },
   "devDependencies": {},
   "scripts": {
-    "dev": "node index.js",
+    "dev": "node main.js",
     "test": "test"
   },
   "keywords": [
