@@ -1,5 +1,6 @@
 /**
  * @description: 在页面heade里嵌入JavaScript代码，自动16倍速播放，播放完毕后自动点击下一章。
+ * ps：这里属于核心功能，原本是打算用selenium的功能来完成，但是翻遍了整个文档也没有找到可以像js那样直接操作原生DOM的api，所以干脆就直接用js来解决问题了。
  * @param {*}
  * @return {*}
  */

@@ -30,8 +30,9 @@ This is a project that can help you automatically play annoying online lessons.
   userName: '', // 账号
   passWord: '', // 密码
   loginPage: '', // 登录页
-  semester: '', // 学期
-  lesson : 1, // 第几课
+  courseType: 1, // 第几个课程类别。公共课：1，专业必修课：2，专业选修课：3
+  course: 1, // 该课程下的第几门课
+  lesson : 1, // 第几课 - 从[进行中的课程]列表顺序来选择
   chapter: 1, // 第几章
   section: 1 // 第几节
   
