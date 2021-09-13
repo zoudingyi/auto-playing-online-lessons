@@ -30,14 +30,14 @@ This is a project that can help you automatically play annoying online lessons.
   userName: '', // 账号
   passWord: '', // 密码
   loginPage: '', // 登录页
-  courseType: 1, // 第几个课程类别。公共课：1，专业必修课：2，专业选修课：3
-  course: 1, // 该课程下的第几门课
-  lesson : 1, // 第几课 - 从[进行中的课程]列表顺序来选择
+  lesson : 1, // 第几课 - 从[进行中的课程]列表顺序来选择 入下图所示
   chapter: 1, // 第几章
   section: 1 // 第几节
   
-  // 例：课程列表2.4 代表第二章第四节， 默认为第一课第一章第一小节开始挂课。
+  // ps：若想从课程目录2.4开始挂课。设置 chapter: 2, section: 4 则从第二章第四节开始挂课， 默认为第一课第一章第一小节开始挂课。
 ```
+
+![课程列表顺序](./src/img/50726580-858D-424e-9CDB-225102F01288.png)
 
 ### 本地运行
 

@@ -4,8 +4,6 @@ const {
   userName,
   passWord,
   loginPage,
-  courseType,
-  course,
   lesson,
   chapter,
   section
@@ -21,8 +19,8 @@ const {
     // 2. 登录
     await driver.findElement(By.id('username')).sendKeys(userName);
     await driver.findElement(By.id('password1')).sendKeys(passWord, Key.ENTER);
-    // 跳转到学员空间 点击相应课程 (全是table布局 用xpath好定位一些)
-    await driver.findElement(By.xpath(`/html/body/div[2]/table[2]/tbody/tr[2]/td[2]/div/table[${courseType + 2}]/tbody/tr/td[2]/table/tbody/tr[${course}]/td[1]/font/a`)).click();
+    // 跳转到学员空间 点击相应课程 (全是table布局 用xpath好定位一些，这里不管点击哪个课程进入的都是相同页面，所以默认点第一个)
+    await driver.findElement(By.xpath(`/html/body/div[2]/table[2]/tbody/tr[2]/td[2]/div/table[3]/tbody/tr/td[2]/table/tbody/tr[1]/td[1]/font/a`)).click();
 
     // 等待新窗口或标签页
     await driver.wait(async () => (await driver.getAllWindowHandles()).length === 2,
