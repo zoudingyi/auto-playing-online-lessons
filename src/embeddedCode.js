@@ -28,7 +28,7 @@ module.exports = `
             const video = videoIframe.contentWindow.document.querySelector("video");
             if (video) {
               video.play();
-              video.playbackRate = 16;
+              video.playbackRate = 2;
               video.addEventListener(
                 "ended",
                 function () {
