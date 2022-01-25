@@ -61,4 +61,15 @@ npm install
 npm run dev
 ```
 
-**注意：** *在自动挂视频中，不要占用全屏。不知道什么原因，目前只要占用全屏，播放完当前视频切换到下一个视频后不会自动播放，当你切换到网课页又自动开始了。*
+### 注意
+**【2022年1月25日】：** 根据反馈发现网站做了倍数监听，一旦设置超过2倍数就会暂停。要调整倍数目前只能通过chrome dev tools 的API: getEventListeners去删除该监听，然后重新修改倍数。
+
+运行项目以后 F12打开控制台console页，top改为视频的iframe下的index.html， 输入下面代码：
+
+```
+const video = document.querySelector("video"); // 获取video
+getEventListeners(video).ratechange.forEach(rate => video.removeEventListener('ratechange', rate.listener)); // 删除该video下的所有ratechange监听。
+video.playbackRate = 16; // 重新调整倍数。
+```
+
+由于切换下一个视频后是一个新的iframe 所以得再次执行以上代码，清除监听。所以无法自动16倍数了 (Ｔ▽Ｔ)

@@ -5,56 +5,70 @@
  * @return {*}
  */
 
+//  倍数调整 F12打开开发面板 选择到视频的iframe 输入下面代码。
+//  const video = document.querySelector("video");
+//  getEventListeners(video).ratechange.forEach(rate => video.removeEventListener('ratechange', rate.listener));
+//  video.playbackRate = 10;
+
 module.exports = `
   var script = document.createElement("script");
   script.innerHTML =
   \`
-    (function () {
-      var videoIndex = 0;
-      var originalTitle = "";
-      loop();
-      async function loop() {
-        console.log(videoIndex);
-        try {
-          await new Promise((res) => setTimeout(res, 2000)); // 防止页面没加载完成就执行
-          const currentTitle = document.querySelector("#mainid h1").innerText;
-          if (currentTitle === originalTitle) return; // 标题一样说明最后一章了
-
-          const videoIframe = document
-            .querySelector("#iframe")
-            .contentWindow.document.querySelector("iframe");
-          const nextBtn = document.querySelector(".orientationright");
-          if (videoIframe) {
-            const video = videoIframe.contentWindow.document.querySelector("video");
-            if (video) {
-              video.play();
-              video.playbackRate = 2;
-              video.addEventListener(
-                "ended",
-                function () {
-                  console.log("当前视频播放结束");
-                  nextBtn.click();
-                  loop();
-                },
-                false
-              );
-            } else {
-              console.log("选择题页 直接跳过");
-              nextBtn.click();
-              loop();
-            }
+  (function () {
+    var videoIndex = 0;
+    var originalTitle = "";
+    loop();
+    async function loop() {
+      console.log(videoIndex);
+      try {
+        await new Promise((res) => setTimeout(res, 2000)); // 防止页面没加载完成就执行
+        const currentTitle = document.querySelector("#mainid h1").innerText;
+        if (currentTitle === originalTitle) return; // 标题一样说明最后一章了
+  
+        const videoIframe = document
+          .querySelector("#iframe")
+          .contentWindow.document.querySelector("iframe");
+        const nextBtn = document.querySelector(".orientationright");
+        if (videoIframe) {
+          const video = videoIframe.contentWindow.document.querySelector("video");
+          if (video) {
+            video.play();
+            video.playbackRate = 2;
+            video.addEventListener(
+              "ended",
+              function () {
+                console.log("当前视频播放结束");
+                nextBtn.click();
+                loop();
+              },
+              false
+            );
+            video.addEventListener(
+              "pause",
+              function () {
+                if (!video.ended) {
+                  console.log("当前视频被暂停了");
+                  video.play();
+                }
+              }
+            );
           } else {
-            console.log("标题页 直接跳过");
+            console.log("选择题页 直接跳过");
             nextBtn.click();
             loop();
           }
-          originalTitle = currentTitle;
-          videoIndex++;
-        } catch (error) {
-          console.error(error);
+        } else {
+          console.log("标题页 直接跳过");
+          nextBtn.click();
+          loop();
         }
+        originalTitle = currentTitle;
+        videoIndex++;
+      } catch (error) {
+        console.error(error);
       }
-    })();
+    }
+  })();
   \`
 document.getElementsByTagName("head")[0].appendChild(script);
-`
+`;
